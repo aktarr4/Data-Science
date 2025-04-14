@@ -1,4 +1,4 @@
-# Import required libraries
+# Importing library
 import pandas as pd
 
 df_trips = pd.read_csv('Trips_by_Distance.csv')   
