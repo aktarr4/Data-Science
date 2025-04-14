@@ -12,16 +12,16 @@ processor_list = [10, 20]
 execution_times = {}
 
 #1. Load the dataset using Pandas
-data_frame = pd.read_csv("Trips_by_Distance.csv")
+df = pd.read_csv("Trips_by_Distance.csv")
 
 #2. Ensure numeric columns are properly formatted
-data_frame["Number of Trips 10-25"] = pd.to_numeric(data_frame["Number of Trips 10-25"], errors="coerce")
-data_frame["Number of Trips 50-100"] = pd.to_numeric(data_frame["Number of Trips 50-100"], errors="coerce")
+df["Number of Trips 10-25"] = pd.to_numeric(df["Number of Trips 10-25"], errors="coerce")
+df["Number of Trips 50-100"] = pd.to_numeric(df["Number of Trips 50-100"], errors="coerce")
 # Optional: Convert text columns
-# data_frame["Date"] = data_frame["Date"].astype(str)
+# df["Date"] = df["Date"].astype(str)
 
 #3.Create a Dask DataFrame with defined partitions
-ddf = dd.from_pandas(data_frame, npartitions=4)
+ddf = dd.from_pandas(df, npartitions=4)
 
 #4.Apply filters and measure computation time
 for core_count in processor_list:
