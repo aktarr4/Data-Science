@@ -16,12 +16,14 @@ X = df_trips[[
     'Number of Trips >=500'
 ]]
 
-X = X.fillna(X.mean())
-
 # Target: number of people who didn’t stay home
 y = df_trips['Population Not Staying at Home']
 
+
+#Check for missing values and filling them with mean
+X = X.fillna(X.mean())
 y = y.fillna(y.mean())
+
 
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
