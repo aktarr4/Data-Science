@@ -1,3 +1,4 @@
+import pandas as pd
 # Plotting the average number of trips by distance category
 import matplotlib.pyplot as plt
 
