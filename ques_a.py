@@ -7,7 +7,7 @@ df_trips = pd.read_csv('Trips_by_Distance.csv')
 print(df_trips[df_trips['Level'] == 'National']['Population Staying at Home'].mean().round())
 
 # Use average distance for each trip range
-df_trips['Total Distance'] = (
+df_trips['Estimated distance'] = (
     df_trips['Number of Trips <1'] * 0.5 +
     df_trips['Number of Trips 1-3'] * 2 +
     df_trips['Number of Trips 3-5'] * 4 +
@@ -21,6 +21,6 @@ df_trips['Total Distance'] = (
 )
 
 # Calculating average distance per person who weren't home
-df_trips['Avg Distance Per Person'] = df_trips['Total Distance'].sum() / df_trips['Population Not Staying at Home'].sum()
+df_trips['Avg Distance Per Person'] = df_trips['Estimated distance'].sum() / df_trips['Population Not Staying at Home'].sum()
 
 print(df_trips["Avg Distance Per Person"].mean().round())
