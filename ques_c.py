@@ -5,13 +5,12 @@ dask.config.set({"dataframe.convert-string": False})
 import time
 import pandas as pd
 import dask.dataframe as dd
-import matplotlib.pyplot as plt
 
 #simulated processor counts (note: doesn't change actual execution)
 processor_list = [10, 20]
 execution_times = {}
 
-#1. Load the dataset using Pandas
+#Load the dataset using Pandas
 df = pd.read_csv("Trips_by_Distance.csv")
 
 #2. Ensure numeric columns are properly formatted
@@ -20,10 +19,10 @@ df["Number of Trips 50-100"] = pd.to_numeric(df["Number of Trips 50-100"], error
 # Optional: Convert text columns
 # df["Date"] = df["Date"].astype(str)
 
-#3.Create a Dask DataFrame with defined partitions
+#Create a Dask DataFrame with defined partitions
 ddf = dd.from_pandas(df, npartitions=4)
 
-#4.Apply filters and measure computation time
+#Apply filters and measure computation time
 for core_count in processor_list:
     print(f"\nSimulating with {core_count} processors: ")
     timer_start = time.time()
@@ -38,7 +37,7 @@ for core_count in processor_list:
     print(f"  Rows >10M (50-100): {len(trips_50_100 )}")
     print(f"  Time: {elapsed:.2f}s")
 
-#5.Display summary of timing
+#Display summary of timing
 print("\nExecution Time Summary: ")
 for proc, duration in execution_times.items():
     print(f"  {proc} processors: {duration:.2f}s")
