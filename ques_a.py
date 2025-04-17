@@ -24,5 +24,5 @@ df_trips['Estimated distance'] = (
 df_trips['Avg Distance Per Person'] = df_trips['Estimated distance'].sum() / df_trips['Population Not Staying at Home'].sum()
 
 #average distance travelled not staying at home
-print("Avg travel distance when not staying at home:", round(df_trips["Avg Distance Per Person"].mean(), 1), "miles")
+print("Avg travel distance when not staying at home:", round(df_trips["Avg Distance Per Person"].mean(), 1), "km")
 
